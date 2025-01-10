@@ -6,7 +6,7 @@ import (
 )
 
 func Test_NewBluetoothManager(t *testing.T) {
-	btm, err := NewBluetoothManager("SunlightMeter")
+	btm, err := NewBluetoothManager("PiToothTest1")
 	if err != nil || btm == nil {
 		t.Fatalf("Failed to create Bluetooth Manager: %v", err)
 	}
@@ -14,7 +14,7 @@ func Test_NewBluetoothManager(t *testing.T) {
 }
 
 func Test_AcceptConnections(t *testing.T) {
-	btm, err := NewBluetoothManager("SunlightMeter")
+	btm, err := NewBluetoothManager("PiToothTest2")
 	if err != nil {
 		t.Fatalf("Failed to create Bluetooth Manager: %v", err)
 	}
@@ -27,7 +27,7 @@ func Test_AcceptConnections(t *testing.T) {
 }
 
 func Test_StartStopOBEXServer(t *testing.T) {
-	btm, err := NewBluetoothManager("SunlightMeter")
+	btm, err := NewBluetoothManager("PiToothTest3")
 	if err != nil {
 		t.Fatalf("Failed to create Bluetooth Manager: %v", err)
 	}

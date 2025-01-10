@@ -29,7 +29,6 @@ type BluetoothManager interface {
 	AcceptConnections(time.Duration) error
 	GetNearbyDevices() (map[string]Device, error)
 	GetAdapter() *adapter.Adapter1
-
 	// OBEX is a protocol for transferring files between devices over Bluetooth
 	ControlOBEXServer(bool, string) error
 
@@ -141,17 +140,17 @@ func (btm *bluetoothManager) AcceptConnections(pairingWindow time.Duration) erro
 	btm.l.Debugln("PiTooth: Checking power is on...")
 	btm.SetPowered(true)
 
-	// Make the device discoverable
-	btm.l.Debugln("PiTooth: Setting Discoverable...")
-	err := btm.SetDiscoverable(true)
-	if err != nil {
-		return fmt.Errorf("Failed to make device discoverable: %v", err)
-	}
-
 	btm.l.Debugln("PiTooth: Setting Pairable...")
-	err = btm.SetPairable(true)
+	err := btm.SetPairable(true)
 	if err != nil {
 		return fmt.Errorf("Failed to make device pairable: %v", err)
+	}
+
+	// Make the device discoverable
+	btm.l.Debugln("PiTooth: Setting Discoverable...")
+	err = btm.SetDiscoverable(true)
+	if err != nil {
+		return fmt.Errorf("Failed to make device discoverable: %v", err)
 	}
 
 	// Waiting for device connections
